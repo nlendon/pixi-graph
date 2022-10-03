@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import data from './data/data.json';
+import { ForceGraph } from "./components/forceGraph";
 import './App.css';
 
 function App() {
+  const nodeHoverTooltip = React.useCallback((node) => {
+    return `<div>     
+      <b>${node.name}</b>
+    </div>`;
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <section className="Main">
+        <ForceGraph linksData={data.links} nodesData={data.nodes} nodeHoverTooltip={nodeHoverTooltip} />
+      </section>
     </div>
   );
 }
